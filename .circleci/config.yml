@@ -1,0 +1,34 @@
+version: 2.1
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - check
+      - deploy:
+          requires:
+            - check
+          filters:
+            branches:
+              only: master
+
+jobs:
+  check:
+    docker:
+      - image: circleci/node:10.15
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages-
+      - run: .circleci/foreach-commit.sh 'yarn prepublishOnly'
+      - save_cache:
+          paths:
+            - node_modules
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+  deploy:
+    docker:
+      - image: circleci/node:10.15
+    steps:
+      - run: echo 'TODO'
