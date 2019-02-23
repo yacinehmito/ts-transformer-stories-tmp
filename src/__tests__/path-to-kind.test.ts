@@ -17,7 +17,7 @@ describe('defaultPathToKind()', () => {
       fc.property(
         fc.array(nonPathString()),
         nonPathString().filter(
-          (str) => !(str === '' || str === 'index' || !str.includes('.')),
+          (str) => !(str === '' || str === 'index' || str.includes('.')),
         ),
         nonPathString(),
         fc.unicodeString(),

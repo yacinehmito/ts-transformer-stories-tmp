@@ -3,10 +3,9 @@ import * as fs from 'fs-extra';
 import * as ts from 'typescript';
 import { async as glob } from 'fast-glob';
 import { storiesTransformer } from '../..';
-import { print } from 'util';
 
 function resolveFixtureDirectory(fixtureDirectory: string): string {
-  return path.resolve(__dirname, '../fixtures', fixtureDirectory);
+  return path.resolve(__dirname, 'fixtures', fixtureDirectory);
 }
 
 export async function compile(fixtureDirectory: string): Promise<void> {
@@ -79,11 +78,11 @@ export class DirectoryContent {
   public toString(): string {
     const chunks: string[] = new Array(this._map.size);
     let i = 0;
-    for (const [filepath, content] of this._map.entries()) {
-      chunks[i] = `//${filepath}\n${content}`;
+    for (const [filePath, content] of this._map.entries()) {
+      chunks[i] = `----boundary ${filePath}\n${content}`;
       ++i;
     }
-    return chunks.join('\n\n');
+    return chunks.join('\n');
   }
 }
 
