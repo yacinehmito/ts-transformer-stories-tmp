@@ -1,6 +1,6 @@
 import { exec } from 'child_process';
 import * as path from 'path';
-import { promises as fs, Stats } from 'fs';
+import * as fs from 'fs-extra';
 
 function resolveFixtureDirectory(fixtureDirectory: string): string {
   return path.resolve(__dirname, '../fixtures', fixtureDirectory);
@@ -30,7 +30,7 @@ export type DirectoryContent = { [filename: string]: string };
 
 type FileType = 'file' | 'directory';
 
-function getFileTypeFromStat(stats: Stats): FileType | undefined {
+function getFileTypeFromStat(stats: fs.Stats): FileType | undefined {
   if (stats.isFile()) return 'file';
   if (stats.isDirectory()) return 'directory';
 }
@@ -72,9 +72,14 @@ async function extractDirectoryContent(
 export async function extractArtifacts(
   fixtureDirectory: string,
 ): Promise<DirectoryContent> {
-  const fixtureDirectoryFullPath = resolveFixtureDirectory(fixtureDirectory);
-  return extractDirectoryContent(
-    fixtureDirectoryFullPath,
-    fixtureDirectoryFullPath,
+  const artifactsDirectory = path.resolve(
+    resolveFixtureDirectory(fixtureDirectory),
+    '.artifacts',
   );
+  const content = await extractDirectoryContent(
+    artifactsDirectory,
+    artifactsDirectory,
+  );
+  await fs.remove(artifactsDirectory);
+  return content;
 }
