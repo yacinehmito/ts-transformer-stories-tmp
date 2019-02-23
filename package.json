@@ -1,0 +1,67 @@
+{
+  "name": "ts-transformer-stories",
+  "version": "1.0.0",
+  "description": "A TypeScript transformer to remove some of Storybook's boilerplate code",
+  "keywords": [
+    "ts",
+    "transformer",
+    "stories",
+    "typescript",
+    "storybook"
+  ],
+  "homepage": "https://github.com/yacinehmito/ts-transformer-stories#readme",
+  "bugs": "httpss://github.com/yacinehmito/ts-transformer-stories/issues",
+  "repository": "github:yacinehmito/ts-transformer-stories",
+  "license": "MIT",
+  "author": "Yacine Hmito <yacine.hmito@gmail.com>",
+  "contributors": [
+    "Yacine Hmito <yacine.hmito@gmail.com>"
+  ],
+  "files": [
+    "./dist/**"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build:api": "./scripts/build-api.js",
+    "build:bundle": "./scripts/build-bundle.js",
+    "cleanup": "rm -rf ./temp ./dist",
+    "lint": "eslint . --ext=.ts",
+    "prepack": "yarn build:bundle",
+    "prepublishOnly": "yarn lint && yarn typecheck && yarn test && yarn build:api",
+    "test": "jest",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@microsoft/api-extractor": "^7.0.18",
+    "@storybook/react": "^4.1.13",
+    "@types/jest": "^24.0.5",
+    "@types/node": "^10.12.26",
+    "@types/storybook__react": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^1.3.0",
+    "@typescript-eslint/parser": "^1.3.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.14.0",
+    "eslint-config-prettier": "^4.0.0",
+    "fast-check": "^1.10.1",
+    "jest": "^24.1.0",
+    "prettier": "^1.16.4",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "rollup": "^1.1.2",
+    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-typescript2": "^0.19.2",
+    "ts-jest": "^24.0.0",
+    "ttypescript": "^2.5.2",
+    "typescript": "^3.3.3"
+  },
+  "resolutions": {
+    "@microsoft/api-extractor/**/typescript": "^3.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^3.0.0"
+  },
+  "unpkg": "./dist/index.min.js"
+}

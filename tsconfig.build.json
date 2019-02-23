@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": false,
+    "noEmit": false,
+    "noEmitOnError": true,
+    "outDir": "./temp/lib",
+    "rootDir": "./src",
+    "target": "es2015"
+  },
+  "include": ["./src"],
+  "exclude": ["./src/**/__tests__/**"]
+}
