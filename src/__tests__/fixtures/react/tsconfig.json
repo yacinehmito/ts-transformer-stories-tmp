@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "../transformer.ts"
+      }
+    ],
     "strict": true,
     "moduleResolution": "node",
     "module": "es2015",

@@ -9,7 +9,7 @@ function resolveFixtureDirectory(fixtureDirectory: string): string {
 export async function compile(fixtureDirectory: string): Promise<void> {
   return new Promise((resolve, reject) => {
     exec(
-      `tsc --project ${path.join(
+      `ttsc --project ${path.join(
         resolveFixtureDirectory(fixtureDirectory),
         'tsconfig.json',
       )}`,
