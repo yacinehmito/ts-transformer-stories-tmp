@@ -2,32 +2,29 @@
 
 exports[`The react projects compiles as expected 1`] = `
 Object {
-  "bar/baz.stories.js": "import * as React from 'react';
-import stories from 'stories';
-stories.add('Story in bar/baz.stories.tsx', () => React.createElement(\\"div\\", null, \\"Hello\\"));
-",
   "foo.stories.js": "import { createElement } from 'react';
-import stories from 'stories';
+import { storiesOf as storiesOf_1 } from \\"@storybook/react\\";
+const stories = storiesOf_1(\\"Unnamed\\", module);
 stories.add('Story in foo.stories.ts', () => createElement('div', null, 'Hello'));
 ",
   "foo/bar/baz.stories.js": "import { createElement } from 'react';
-import stories from 'stories';
+import { storiesOf as storiesOf_1 } from \\"@storybook/react\\";
+const stories = storiesOf_1(\\"Unnamed\\", module);
 stories.add('Story in foo/bar/baz.stories.ts', () => createElement('div', null, 'Hello'));
 ",
-  "foo/bar/index.stories.js": "import * as React from 'react';
-import stories from 'stories';
-stories.add('Story in foo/bar/index.stories.tsx', () => React.createElement(\\"div\\", null, \\"Hello\\"));
-",
   "foo/foo.stories.js": "import { createElement } from 'react';
-import stories from 'stories';
+import { storiesOf as storiesOf_1 } from \\"@storybook/react\\";
+const stories = storiesOf_1(\\"Unnamed\\", module);
 stories.add('Story in foo/foo.stories.ts', () => createElement('div', null, 'Hello'));
 ",
   "foo/index.stories.js": "import { createElement } from 'react';
-import stories from 'stories';
+import { storiesOf as storiesOf_1 } from \\"@storybook/react\\";
+const stories = storiesOf_1(\\"Unnamed\\", module);
 stories.add('Story in foo/index.stories.ts', () => createElement('div', null, 'Hello'));
 ",
   "index.stories.js": "import { createElement } from 'react';
-import stories from 'stories';
+import { storiesOf as storiesOf_1 } from \\"@storybook/react\\";
+const stories = storiesOf_1(\\"Unnamed\\", module);
 stories.add('Story in index.stories.ts', () => createElement('div', null, 'Hello'));
 ",
 }

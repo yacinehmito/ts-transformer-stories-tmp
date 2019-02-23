@@ -15,7 +15,7 @@ function forwardDefaultKind(_: string, defaultKind: string): string {
 
 export function storiesTransformer(
   options: StoriesTransformerOptions = {},
-): unknown {
+): ts.TransformerFactory<ts.SourceFile> {
   const {
     storiesModule = 'stories',
     storybookModule = '@storybook/react',
