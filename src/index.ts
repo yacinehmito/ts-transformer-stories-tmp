@@ -1,11 +1,41 @@
 import * as ts from 'typescript';
 import { PathToKindFunction, defaultPathToKind } from './path-to-kind';
 
+/**
+ * @public
+ * Options for the transformer factory
+ */
 export interface StoriesTransformerOptions {
+  /**
+   * The name of the module that will be replaced by the kind,
+   * i.e. the object which stories are added to.
+   * Defaults to `'stories'`.
+   * @example
+   * // If storiesModule is set to 'foo', the stories builder must be imported like this:
+   * import stories from 'foo';
+   */
   storiesModule?: string;
+  /**
+   * The storybook module used to create the kind.
+   * It depends on the library you are using.
+   * Defaults to `'@storybook/react'`.
+   */
   storybookModule?: string;
-  unnamedKind?: string;
+  /**
+   * The function used to determine the name of a kind from its file path.
+   * Defaults to a function that removes the extension and suffix from the file path,
+   * then further removes the base name if it is `'index'`.
+   */
   pathToKind?: PathToKindFunction;
+  /**
+   * Placeholder for when the kind given by `pathToKind` is an empty string.
+   * Defaults to `'Unnamed'`.
+   */
+  unnamedKind?: string;
+  /**
+   * Regular expression that identifies the file that must be transformed.
+   * Defaults to `/\.stories\.tsx?$/`.
+   */
   pattern?: RegExp;
 }
 
@@ -13,6 +43,13 @@ function forwardDefaultKind(_: string, defaultKind: string): string {
   return defaultKind;
 }
 
+/**
+ * @public
+ * Creates the transformer factory that replaces the stories module
+ * with an automatically generated story builder.
+ * @param options
+ * @returns The transformer factory
+ */
 export function storiesTransformer(
   options: StoriesTransformerOptions = {},
 ): ts.TransformerFactory<ts.SourceFile> {
@@ -21,7 +58,7 @@ export function storiesTransformer(
     storybookModule = '@storybook/react',
     pathToKind = forwardDefaultKind,
     unnamedKind = 'Unnamed',
-    pattern = /\.stories\.ts$/,
+    pattern = /\.stories\.tsx?$/,
   } = options;
 
   function transformerFactory(
@@ -34,8 +71,8 @@ export function storiesTransformer(
         return file;
       }
 
-      const defaultKind = defaultPathToKind(filePath, unnamedKind);
-      const kind = pathToKind(filePath, unnamedKind, defaultKind);
+      const defaultKind = defaultPathToKind(filePath);
+      const kind = pathToKind(filePath, defaultKind) || unnamedKind;
 
       return visitSourceFile(file, context, {
         kind,
@@ -136,4 +173,4 @@ function visitSourceFile(
   return ts.visitEachChild(sourceFile, visitNode, context);
 }
 
-module.exports = { storiesTransformer };
+export { PathToKindFunction } from './path-to-kind';

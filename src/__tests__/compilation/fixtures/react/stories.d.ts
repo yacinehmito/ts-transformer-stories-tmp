@@ -1,5 +1,5 @@
 declare module 'stories' {
-  import { Story } from '@storybook/react';
-  const stories: Story;
+  import { Story as Kind } from '@storybook/react';
+  const stories: Kind;
   export default stories;
 }
