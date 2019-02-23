@@ -8,4 +8,4 @@ yarn-error.log
 /.vscode/**
 !/.vscode/extensions.json
 
-__tests__/**/.artifacts/
+**/__tests__/**/.artifacts
