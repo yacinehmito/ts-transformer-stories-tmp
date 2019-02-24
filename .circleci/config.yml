@@ -36,7 +36,7 @@ jobs:
             - node_modules
           key: yarn-packages-{{ checksum "yarn.lock" }}
       - persist_to_workspace:
-          root: ./git
+          root: ./.git
           paths:
             - .
   validate:
