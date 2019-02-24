@@ -4,6 +4,8 @@
 
 set -e
 
+cd $(dirname "$0")/..
+
 if [ "$CIRCLE_BRANCH" = "master" ]; then
   yarn install --frozen-lockfile
   eval "$1"
