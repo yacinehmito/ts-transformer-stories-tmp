@@ -29,7 +29,7 @@ async function build(
   const { external = [] } = options;
 
   const config = {
-    input: 'src/index.ts',
+    input: resolveInRoot('./src/index.ts'),
     external: [
       ...Object.keys(packageJson.dependencies || {}),
       ...Object.keys(packageJson.peerDependencies || {}),
@@ -39,6 +39,7 @@ async function build(
       rollupTypescript({
         typescript,
         cacheRoot: resolveInRoot('./.temp/rpt2_cache'),
+        tsconfig: resolveInRoot('./tsconfig.build.json'),
       }),
     ],
   };
@@ -49,7 +50,7 @@ async function build(
   });
 
   const umdOutput: rollup.OutputOptions = {
-    file: './dist/index.js',
+    file: resolveInRoot('./dist/index.js'),
     format: 'umd',
     name: camelCase(packageJson.name),
     globals: {
@@ -62,10 +63,10 @@ async function build(
     bundle.write(umdOutput),
     minifiedBundle.write({
       ...umdOutput,
-      file: './dist/index.min.js',
+      file: resolveInRoot('./dist/index.min.js'),
     }),
     bundle.write({
-      file: `./dist/index.mjs`,
+      file: resolveInRoot('./dist/index.mjs'),
       format: 'esm',
     }),
   ]);
