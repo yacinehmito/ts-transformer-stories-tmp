@@ -131,12 +131,12 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@microsoft/api-extractor@^7.0.18":
-  version "7.0.18"
-  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.0.18.tgz#4eb931436495177dfcef8f2d8da3d084d10eebb6"
-  integrity sha512-puQisjyoYK1A0I8DqyBoLPV9noyFUlxTE3WsjhgJw//TrmegGHYmsRlD3rnHeXcKPM1F7sd/VKJXeXC3IPTf2Q==
+"@microsoft/api-extractor@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-8.0.0.tgz#4c274b6bb8745ab99f412ffd8ef254b71695bac0"
+  integrity sha512-7t4TNrhAcwJmpB+LnT7tHjafpPIEjfD3CUigg+1bHG+9aEDLb74qB4dGf11+V1hjSVqgx6CO6ZxJaMTiR5QhgQ==
   dependencies:
-    "@microsoft/node-core-library" "3.10.0"
+    "@microsoft/node-core-library" "3.11.0"
     "@microsoft/ts-command-line" "4.2.3"
     "@microsoft/tsdoc" "0.12.5"
     "@types/node" "8.5.8"
@@ -147,10 +147,10 @@
     typescript "~3.1.6"
     z-schema "~3.18.3"
 
-"@microsoft/node-core-library@3.10.0":
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/@microsoft/node-core-library/-/node-core-library-3.10.0.tgz#70e089534d8e20f6a0f9c7a4a12a6aeafd6a1ddb"
-  integrity sha512-1SbU+XNYAabhV9noGXHtsUVPc5ELV+oEuJQtZQoCncbOd6WAMeTgB1xFwh96hmdEXyKQyML/pnByiKocmh/nbQ==
+"@microsoft/node-core-library@3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/node-core-library/-/node-core-library-3.11.0.tgz#f1f0dfd8f1ff496e8359a1fb9126868933365d49"
+  integrity sha512-nPbOoxSOGCw4zMuPAwRIOln9RQefKeQ/y1QpB8iwyzZuhoNR3FujTGT+TadFzopmyQWTyn3LXjw0qp4VMnabxA==
   dependencies:
     "@types/fs-extra" "5.0.4"
     "@types/jju" "~1.4.0"
