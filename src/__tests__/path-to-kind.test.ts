@@ -35,7 +35,7 @@ describe('defaultPathToKind()', () => {
     );
   });
   it('returns an empty string when the path does not appear to be a file', () => {
-    expect(defaultPathToKind('')).toBe('foo');
+    expect(defaultPathToKind('')).toBe('');
     expect(defaultPathToKind('/')).toBe('');
     expect(defaultPathToKind('./.')).toBe('');
     expect(defaultPathToKind('//')).toBe('');
