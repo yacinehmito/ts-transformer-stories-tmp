@@ -8,6 +8,7 @@ declare function storiesTransformer(options?: StoriesTransformerOptions): ts.Tra
 interface StoriesTransformerOptions {
     pathToKind?: PathToKindFunction;
     pattern?: RegExp;
+    rootDir?: string;
     storiesModule?: string;
     storybookModule?: string;
     unnamedKind?: string;
