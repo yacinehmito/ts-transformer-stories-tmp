@@ -47,7 +47,8 @@ jobs:
           at: ./.git
       - run: &git_reset git checkout $CIRCLE_BRANCH && git reset --hard $CIRCLE_BRANCH
       - restore_cache: *restore_yarn_cache
-      - run: ./.circleci/foreach-commit.sh 'yarn validate'
+      - run_on_each_commit:
+          command: yarn install --frozen-lockfile && yarn validate
       - save_cache: *save_yarn_cache
       - store_test_results:
           path: ./.temp/test-reports
@@ -87,3 +88,12 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: echo TODO
       # - run: yarn semantic-release
+
+commands:
+  run_on_each_commit:
+    description: 'Run a command on each commit between master and the branch'
+    parameters:
+      command:
+        type: string
+    steps:
+      - run: ./.circleci/foreach-commit.sh '<<parameters.command>>'
