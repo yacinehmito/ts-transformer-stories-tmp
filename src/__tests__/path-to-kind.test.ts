@@ -22,10 +22,14 @@ describe('defaultPathToKind()', () => {
         nonPathString(),
         (dirs, name, suffix) => {
           const defaultKind = path.join(...dirs, name);
-          expect(defaultPathToKind(defaultKind)).toBe('');
-          expect(defaultPathToKind(`${defaultKind}.ts`)).toBe('');
-          expect(defaultPathToKind(`${defaultKind}.${suffix}`)).toBe('');
-          expect(defaultPathToKind(`${defaultKind}.${suffix}.ts`)).toBe('');
+          expect(defaultPathToKind(defaultKind)).toBe(defaultKind);
+          expect(defaultPathToKind(`${defaultKind}.ts`)).toBe(defaultKind);
+          expect(defaultPathToKind(`${defaultKind}.${suffix}`)).toBe(
+            defaultKind,
+          );
+          expect(defaultPathToKind(`${defaultKind}.${suffix}.ts`)).toBe(
+            defaultKind,
+          );
         },
       ),
     );

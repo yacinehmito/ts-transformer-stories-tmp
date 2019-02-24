@@ -4,7 +4,7 @@ exports[`The React project compiles as expected 1`] = `
 ----boundary foo.stories.js
 import { createElement } from 'react';
 import { storiesOf as storiesOf_1 } from "@storybook/react";
-const stories = storiesOf_1("Unnamed", module);
+const stories = storiesOf_1("foo", module);
 stories.add('Story in foo.stories.ts', () => createElement('div', null, 'Hello'));
 
 ----boundary index.stories.js
@@ -13,22 +13,22 @@ import { storiesOf as storiesOf_1 } from "@storybook/react";
 const stories = storiesOf_1("Unnamed", module);
 stories.add('Story in index.stories.ts', () => createElement('div', null, 'Hello'));
 
-----boundary foo/foo.stories.js
+----boundary foo/bar/baz.stories.js
 import { createElement } from 'react';
 import { storiesOf as storiesOf_1 } from "@storybook/react";
-const stories = storiesOf_1("Unnamed", module);
-stories.add('Story in foo/foo.stories.ts', () => createElement('div', null, 'Hello'));
+const stories = storiesOf_1("foo/bar/baz", module);
+stories.add('Story in foo/bar/baz.stories.ts', () => createElement('div', null, 'Hello'));
 
 ----boundary foo/index.stories.js
 import { createElement } from 'react';
 import { storiesOf as storiesOf_1 } from "@storybook/react";
-const stories = storiesOf_1("Unnamed", module);
+const stories = storiesOf_1("foo", module);
 stories.add('Story in foo/index.stories.ts', () => createElement('div', null, 'Hello'));
 
-----boundary foo/bar/baz.stories.js
+----boundary foo/foo.stories.js
 import { createElement } from 'react';
 import { storiesOf as storiesOf_1 } from "@storybook/react";
-const stories = storiesOf_1("Unnamed", module);
-stories.add('Story in foo/bar/baz.stories.ts', () => createElement('div', null, 'Hello'));
+const stories = storiesOf_1("foo/foo", module);
+stories.add('Story in foo/foo.stories.ts', () => createElement('div', null, 'Hello'));
 
 `;

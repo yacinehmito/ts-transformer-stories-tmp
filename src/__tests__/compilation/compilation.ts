@@ -29,7 +29,7 @@ export async function compile(fixtureDirectory: string): Promise<void> {
   );
 
   program.emit(undefined, undefined, undefined, undefined, {
-    before: [storiesTransformer()],
+    before: [storiesTransformer({ rootDir: directory })],
   });
 }
 

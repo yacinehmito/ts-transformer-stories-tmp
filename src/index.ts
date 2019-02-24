@@ -1,4 +1,5 @@
 import * as ts from 'typescript';
+import { relative } from 'path';
 import { PathToKindFunction, defaultPathToKind } from './path-to-kind';
 
 /**
@@ -28,15 +29,20 @@ export interface StoriesTransformerOptions {
    */
   pathToKind?: PathToKindFunction;
   /**
-   * Placeholder for when the kind given by `pathToKind` is an empty string.
+   * The placeholder for when the kind given by `pathToKind` is an empty string.
    * Defaults to `'Unnamed'`.
    */
   unnamedKind?: string;
   /**
-   * Regular expression that identifies the file that must be transformed.
+   * The regular expression that identifies the file that must be transformed.
    * Defaults to `/\.stories\.tsx?$/`.
    */
   pattern?: RegExp;
+  /**
+   * The directory relative to which the file paths are set.
+   * Defaults to the current working directory.
+   */
+  rootDir?: string;
 }
 
 function forwardDefaultKind(_: string, defaultKind: string): string {
@@ -59,6 +65,7 @@ export function storiesTransformer(
     pathToKind = forwardDefaultKind,
     unnamedKind = 'Unnamed',
     pattern = /\.stories\.tsx?$/,
+    rootDir = process.cwd(),
   } = options;
 
   function transformerFactory(
@@ -71,8 +78,9 @@ export function storiesTransformer(
         return file;
       }
 
-      const defaultKind = defaultPathToKind(filePath);
-      const kind = pathToKind(filePath, defaultKind) || unnamedKind;
+      const relativeFilePath = relative(rootDir, filePath);
+      const defaultKind = defaultPathToKind(relativeFilePath);
+      const kind = pathToKind(relativeFilePath, defaultKind) || unnamedKind;
 
       return visitSourceFile(file, context, {
         kind,
