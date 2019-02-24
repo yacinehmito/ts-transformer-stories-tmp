@@ -11,7 +11,7 @@ if [ "$CIRCLE_BRANCH" = "master" ]; then
 else
   git fetch -u origin master
   git checkout $CIRCLE_BRANCH
-  GIT_SEQUENCE_EDITOR=true GIT_COMMITTER_NAME='Circle CI' GIT_COMMITTER_EMAIL='dev@spendesk.com' \
+  GIT_SEQUENCE_EDITOR=true \
     git rebase origin/master \
     --interactive \
     --autosquash \

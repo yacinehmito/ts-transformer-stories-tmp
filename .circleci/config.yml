@@ -17,13 +17,16 @@ workflows:
       - publish:
           requires:
             - build
-          # context: semantic-release
+          context: semantic-release
           filters: *only_master
 
 jobs:
   install:
-    docker:
-      - image: &default_image circleci/node:10.15
+    docker: &default_docker
+      - image: circleci/node:10.15
+        environment:
+          GIT_COMMITTER_NAME: Circle CI
+          GIT_COMMITTER_EMAIL: yacine.hmito@gmail.com
     steps:
       - checkout
       - install_node_modules
@@ -32,14 +35,12 @@ jobs:
           paths:
             - .
   validate:
-    docker:
-      - image: *default_image
+    docker: *default_docker
     steps:
       - reset_to_current_branch
       - restore_node_modules
       - run_on_each_commit:
           command: yarn install --frozen-lockfile && yarn validate
-      - save_node_modules
       - store_test_results:
           path: ./.temp/test-reports
       - store_artifacts:
@@ -52,8 +53,7 @@ jobs:
           path: ./.temp/test-coverage/coverage-final.json
           destination: coverage.json
   build:
-    docker:
-      - image: *default_image
+    docker: *default_docker
     steps:
       - reset_to_current_branch
       - install_node_modules
@@ -65,13 +65,11 @@ jobs:
           paths:
             - .
   publish:
-    docker:
-      - image: *default_image
+    docker: *default_docker
     steps:
       - reset_to_current_branch
       - install_node_modules
-      - run: echo TODO
-      # - run: yarn semantic-release
+      - run: yarn semantic-release
 
 commands:
   run_on_each_commit:
