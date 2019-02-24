@@ -5,6 +5,7 @@
 set -e
 
 if [ "$CIRCLE_BRANCH" = "master" ]; then
+  yarn install --frozen-lockfile
   eval "$1"
 else
   git fetch -u origin master
