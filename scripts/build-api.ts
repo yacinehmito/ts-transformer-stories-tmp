@@ -7,6 +7,8 @@ function resolveInRoot(...args: string[]): string {
   return resolve(__dirname, '..', ...args);
 }
 
+process.chdir(resolveInRoot('./.'));
+
 async function execute(command: string): Promise<void> {
   return new Promise((resolve, reject) => {
     exec(command, { cwd: resolveInRoot() }, (error, stdin, stdout) => {

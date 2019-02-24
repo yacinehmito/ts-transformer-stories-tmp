@@ -12,6 +12,8 @@ function resolveInRoot(...args: string[]): string {
   return resolve(__dirname, '..', ...args);
 }
 
+process.chdir(resolveInRoot('./.'));
+
 interface PackageJson {
   name: string;
   dependencies: { [name: string]: string };
@@ -39,7 +41,7 @@ async function build(
       rollupTypescript({
         typescript,
         cacheRoot: resolveInRoot('./.temp/rpt2_cache'),
-        tsconfig: resolveInRoot('./tsconfig.build.json'),
+        tsconfig: resolveInRoot('./tsconfig.json'),
       }),
     ],
   };
