@@ -39,6 +39,7 @@ jobs:
     steps:
       - reset_to_current_branch
       - restore_node_modules
+      - run: &trust_github mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run_on_each_commit:
           command: yarn install --frozen-lockfile && yarn validate
       - store_test_results:
@@ -69,7 +70,7 @@ jobs:
     steps:
       - reset_to_current_branch
       - install_node_modules
-      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run: *trust_github
       - run: yarn semantic-release
 
 commands:
