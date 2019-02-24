@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node -P ./scripts/tsconfig.json
+#!/usr/bin/env ts-node
 
 import { resolve } from 'path';
 import { exec } from 'child_process';
@@ -9,7 +9,7 @@ function resolveInRoot(...args: string[]): string {
 
 async function execute(command: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    exec(command, (error, stdin, stdout) => {
+    exec(command, { cwd: resolveInRoot() }, (error, stdin, stdout) => {
       process.stdin.write(stdin);
       process.stdin.write(stdout);
       if (error) {

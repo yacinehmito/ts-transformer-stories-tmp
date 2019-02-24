@@ -5,11 +5,12 @@
     "rootFolder": "."
   },
   "project": {
-    "entryPointSourceFile": "./temp/lib/index.d.ts"
+    "entryPointSourceFile": "./.temp/lib/index.d.ts"
   },
   "apiReviewFile": {
     "enabled": true,
-    "apiReviewFolder": "./."
+    "apiReviewFolder": "./.",
+    "tempFolder": "./.temp"
   },
   "apiJsonFile": {
     "enabled": false

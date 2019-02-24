@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node -P ./scripts/tsconfig.json
+#!/usr/bin/env ts-node
 
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
