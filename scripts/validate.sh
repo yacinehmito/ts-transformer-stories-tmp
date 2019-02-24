@@ -10,6 +10,7 @@ if [ -z "$CI" ]; then
 else
   DIR=$(dirname "$0")
   export JEST_JUNIT_OUTPUT="$DIR/../.temp/test-reports/junit/results.xml"
+  ls "$DIR/../node_modules"
 
   yarn lint --quiet
   yarn typecheck
