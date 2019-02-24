@@ -26,15 +26,7 @@ jobs:
       - image: &default_image circleci/node:10.15
     steps:
       - checkout
-      - restore_cache: &restore_yarn_cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-            - yarn-packages-
-      - run: yarn install --frozen-lockfile
-      - save_cache: &save_yarn_cache
-          paths:
-            - node_modules
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - install_node_modules
       - persist_to_workspace:
           root: ./.git
           paths:
@@ -43,13 +35,11 @@ jobs:
     docker:
       - image: *default_image
     steps:
-      - attach_workspace:
-          at: ./.git
-      - run: &git_reset git checkout $CIRCLE_BRANCH && git reset --hard $CIRCLE_BRANCH
-      - restore_cache: *restore_yarn_cache
+      - reset_to_current_branch
+      - restore_node_modules
       - run_on_each_commit:
           command: yarn install --frozen-lockfile && yarn validate
-      - save_cache: *save_yarn_cache
+      - save_node_modules
       - store_test_results:
           path: ./.temp/test-reports
       - store_artifacts:
@@ -65,11 +55,8 @@ jobs:
     docker:
       - image: *default_image
     steps:
-      - attach_workspace:
-          at: ./.git
-      - run: *git_reset
-      - restore_cache: *restore_yarn_cache
-      - run: yarn install --frozen-lockfile
+      - reset_to_current_branch
+      - install_node_modules
       - run: yarn build
       - store_artifacts:
           path: ./dist
@@ -81,11 +68,8 @@ jobs:
     docker:
       - image: *default_image
     steps:
-      - attach_workspace:
-          at: ./.git
-      - run: *git_reset
-      - restore_cache: *restore_yarn_cache
-      - run: yarn install --frozen-lockfile
+      - reset_to_current_branch
+      - install_node_modules
       - run: echo TODO
       # - run: yarn semantic-release
 
@@ -97,3 +81,29 @@ commands:
         type: string
     steps:
       - run: ./.circleci/run-on-each-commit.sh '<<parameters.command>>'
+  reset_to_current_branch:
+    description: 'Moves to $CIRCLE_BRANCH and performs a hard reset'
+    steps:
+      - attach_workspace:
+          at: ./.git
+      - run: git checkout $CIRCLE_BRANCH && git reset --hard $CIRCLE_BRANCH
+  restore_node_modules:
+    description: 'Loads node_modules from the cache'
+    steps:
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages-
+  save_node_modules:
+    description: 'Saves the current node_modules to the cache'
+    steps:
+      - save_cache:
+          paths:
+            - node_modules
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+  install_node_modules:
+    description: 'Installs the yarn dependencies, restoring the node_modules from the cache and saving them'
+    steps:
+      - restore_node_modules
+      - run: yarn install --frozen-lockfile
+      - save_node_modules
