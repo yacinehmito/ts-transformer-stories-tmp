@@ -21,7 +21,7 @@
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
   "scripts": {
-    "build": "yarn cleanup && yarn api && yarn bundle",
+    "build": "yarn cleanup && yarn build-api && yarn build-bundle",
     "build-api": "cd scripts && ./build-api.ts",
     "build-bundle": "cd scripts && ./build-bundle.ts",
     "cleanup": "rm -rf ./.temp ./dist",
