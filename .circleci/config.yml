@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - git fetch -u origin master
-      - git rebase master --autosquash --autofixup
+      - GIT_SEQUENCE_EDITOR=true git rebase origin/master --interactive --autosquash
   test:
     docker:
       - image: circleci/node:10.15
