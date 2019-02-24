@@ -2,6 +2,8 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+// Testing out some stuff
+
 const { resolve: pathResolve } = require('path');
 const { exec } = require('child_process');
 
