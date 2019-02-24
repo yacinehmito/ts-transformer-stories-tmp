@@ -6,7 +6,7 @@ set -e
 
 DIR=$(dirname "${BASH_SOURCE[0]}")
 
-if [ "$CIRCLE_BRANCH" = "master" ]
+if [ "$CIRCLE_BRANCH" = "master" ]; then
   eval "$1"
 else
   git fetch -u origin master
