@@ -8,7 +8,7 @@ if [ -z "$CI" ]; then
   yarn test --ci
   yarn build:api
 else
-  DIR=$(dirname "${BASH_SOURCE[0]}")
+  DIR=$(dirname "$0")
   export JEST_JUNIT_OUTPUT="$DIR/../.temp/test-reports/junit/results.xml"
 
   yarn lint --quiet
