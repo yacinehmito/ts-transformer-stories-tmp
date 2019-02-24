@@ -91,9 +91,9 @@ jobs:
 
 commands:
   run_on_each_commit:
-    description: 'Run a command on each commit between master and the branch'
+    description: 'Run a command on each commit between master and $CIRCLE_BRANCH'
     parameters:
       command:
         type: string
     steps:
-      - run: ./.circleci/foreach-commit.sh '<<parameters.command>>'
+      - run: ./.circleci/run-on-each-commit.sh '<<parameters.command>>'
