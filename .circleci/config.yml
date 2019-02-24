@@ -1,15 +1,21 @@
 version: 2
 
+rebase: &rebase
+  run: git fetch -u origin master && GIT_SEQUENCE_EDITOR=true GIT_COMMITTER_NAME='Circle CI' GIT_COMMITTER_EMAIL='dev@spendesk.com' git rebase origin/master --interactive --autosquash
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - test
+
 jobs:
   test:
     docker:
       - image: circleci/node:10.15
     steps:
       - checkout
-      - git log --oneline
-      - git fetch -u origin master
-      - GIT_SEQUENCE_EDITOR=true git rebase origin/master --interactive --autosquash
-      - git log --oneline
+      - *rebase
       - restore_cache:
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
