@@ -1,0 +1,12 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: install
+    image: node
+    commands:
+      - yarn install --frozen-lockfile
+  - name: test
+    image: node
+    commands:
+      - yarn test
