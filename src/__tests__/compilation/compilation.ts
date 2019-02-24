@@ -4,8 +4,18 @@ import * as ts from 'typescript';
 import { async as glob } from 'fast-glob';
 import { storiesTransformer } from '../..';
 
+function resolveInRoot(...args: string[]): string {
+  return path.resolve(__dirname, '../../..', ...args);
+}
+
 function resolveFixtureDirectory(fixtureDirectory: string): string {
   return path.resolve(__dirname, 'fixtures', fixtureDirectory);
+}
+
+function resolveCompilationArtifactsDirectory(
+  fixtureDirectory: string,
+): string {
+  return resolveInRoot('test-artifacts/compilation', fixtureDirectory);
 }
 
 export async function compile(fixtureDirectory: string): Promise<void> {
@@ -19,7 +29,7 @@ export async function compile(fixtureDirectory: string): Promise<void> {
     target: ts.ScriptTarget.ES2015,
     lib: ['es2015', 'dom'],
     jsx: ts.JsxEmit.React,
-    outDir: path.resolve(directory, '.artifacts'),
+    outDir: resolveCompilationArtifactsDirectory(fixtureDirectory),
   };
   const compilerHost = ts.createCompilerHost(compilerOptions);
   const program = ts.createProgram(
@@ -102,9 +112,8 @@ export class DirectoryContent {
 export async function extractArtifacts(
   fixtureDirectory: string,
 ): Promise<DirectoryContent> {
-  const artifactsDirectory = path.resolve(
-    resolveFixtureDirectory(fixtureDirectory),
-    '.artifacts',
+  const artifactsDirectory = resolveCompilationArtifactsDirectory(
+    fixtureDirectory,
   );
 
   return DirectoryContent.read(artifactsDirectory);
