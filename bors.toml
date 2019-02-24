@@ -1,5 +1,0 @@
-status = [
-  "ci/circleci"
-]
-
-delete_merged_branches = true

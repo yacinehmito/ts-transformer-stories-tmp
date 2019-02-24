@@ -1,10 +1,6 @@
 version: 2
 jobs:
   build:
-    branches:
-      only:
-        - bors-staging
-        - bors-trying
     docker:
       - image: circleci/node:10.15
     working_directory: ~/repo
