@@ -17,5 +17,11 @@
   },
   "dtsRollup": {
     "enabled": true
+  },
+  "policies": {
+    "namespaceSupport": "conservative"
+  },
+  "validationRules": {
+    "missingReleaseTags": "error"
   }
 }
