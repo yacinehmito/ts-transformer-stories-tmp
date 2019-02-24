@@ -42,13 +42,15 @@ export class DirectoryContent {
     const directoryContent = new this(directory);
     const { _map } = directoryContent;
     await Promise.all(
-      files.map(async (file) => {
-        const filePath = file.toString();
-        _map.set(
-          path.relative(directory, file.toString()),
-          await fs.readFile(filePath, { encoding: 'utf8' }),
-        );
-      }),
+      files
+        .map((file) => file.toString())
+        .sort()
+        .map(async (filePath) => {
+          _map.set(
+            path.relative(directory, filePath),
+            await fs.readFile(filePath, { encoding: 'utf8' }),
+          );
+        }),
     );
 
     return directoryContent;
