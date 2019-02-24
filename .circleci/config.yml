@@ -26,11 +26,16 @@ jobs:
             - node_modules
           key: yarn-packages-{{ checksum "yarn.lock" }}
       - store_test_results:
-          path: .temp/test-reports/junit
-      - store_artifacts:
           path: .temp/test-reports
       - store_artifacts:
-          path: .temp/test-coverage
+          path: .temp/test-reports/junit/results.xml
+          destination: junit-results.xml
+      - store_artifacts:
+          path: .temp/test-coverage/lcov.info
+          destination: lcov.info
+      - store_artifacts:
+          path: .temp/test-coverage/coverage-final.json
+          destination: coverage.json
   deploy:
     docker:
       - image: circleci/node:10.15
