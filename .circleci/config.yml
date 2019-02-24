@@ -69,7 +69,7 @@ jobs:
     steps:
       - reset_to_current_branch
       - install_node_modules
-      - mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: yarn semantic-release
 
 commands:
