@@ -1,6 +1,6 @@
 {
   "name": "ts-transformer-stories-tmp",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha.1",
   "description": "A TypeScript transformer to remove some of Storybook's boilerplate code",
   "keywords": [
     "boilerplate",

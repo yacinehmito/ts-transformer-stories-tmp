@@ -4,7 +4,7 @@ workflows:
   ci:
     jobs:
       - validate
-      - deploy:
+      - publish:
           requires:
             - validate
           filters:
@@ -36,7 +36,7 @@ jobs:
       - store_artifacts:
           path: .temp/test-coverage/coverage-final.json
           destination: coverage.json
-  deploy:
+  publish:
     docker:
       - image: circleci/node:10.15
     steps:
