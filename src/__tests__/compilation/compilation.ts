@@ -15,7 +15,7 @@ function resolveFixtureDirectory(fixtureDirectory: string): string {
 function resolveCompilationArtifactsDirectory(
   fixtureDirectory: string,
 ): string {
-  return resolveInRoot('test-artifacts/compilation', fixtureDirectory);
+  return resolveInRoot('.temp/test-artifacts/compilation', fixtureDirectory);
 }
 
 export async function compile(fixtureDirectory: string): Promise<void> {

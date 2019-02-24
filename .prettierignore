@@ -1,6 +1,5 @@
 /node_modules
 /dist
-/temp
-/test-artifacts
+/.temp
 
 /ts-transformer-stories.api.ts

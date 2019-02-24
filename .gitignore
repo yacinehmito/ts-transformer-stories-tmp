@@ -1,7 +1,6 @@
 /node_modules
 /dist
-/temp
-/test-artifacts
+/.temp
 
 yarn-error.log
 
