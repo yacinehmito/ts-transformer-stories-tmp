@@ -22,9 +22,7 @@ jobs:
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
             - yarn-packages-
-      # - run: ls $CIRCLE_WORKING_DIRECTORY
-      - run: ls .
-      - run: $CIRCLE_WORKING_DIRECTORY/.circleci/foreach-commit.sh 'yarn prepublishOnly'
+      - run: circleci/foreach-commit.sh 'yarn prepublishOnly'
       - save_cache:
           paths:
             - node_modules
