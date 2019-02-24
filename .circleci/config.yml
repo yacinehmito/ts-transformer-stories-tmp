@@ -1,5 +1,4 @@
 version: 2.1
-
 workflows:
   version: 2
   ci:
@@ -11,7 +10,6 @@ workflows:
           filters:
             branches:
               only: master
-
 jobs:
   validate:
     docker:
@@ -27,6 +25,12 @@ jobs:
           paths:
             - node_modules
           key: yarn-packages-{{ checksum "yarn.lock" }}
+      - store_test_results:
+          path: .temp/test-reports/junit
+      - store_artifacts:
+          path: .temp/test-reports
+      - store_artifacts:
+          path: .temp/test-coverage
   deploy:
     docker:
       - image: circleci/node:10.15
