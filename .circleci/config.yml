@@ -4,16 +4,16 @@ workflows:
   version: 2
   ci:
     jobs:
-      - check
+      - validate
       - deploy:
           requires:
-            - check
+            - validate
           filters:
             branches:
               only: master
 
 jobs:
-  check:
+  validate:
     docker:
       - image: circleci/node:10.15
     steps:
@@ -22,7 +22,7 @@ jobs:
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
             - yarn-packages-
-      - run: .circleci/foreach-commit.sh 'yarn prepublishOnly'
+      - run: .circleci/foreach-commit.sh 'yarn validate'
       - save_cache:
           paths:
             - node_modules

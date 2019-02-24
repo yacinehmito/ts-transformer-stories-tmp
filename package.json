@@ -2,24 +2,14 @@
   "name": "ts-transformer-stories",
   "version": "1.0.0",
   "description": "A TypeScript transformer to remove some of Storybook's boilerplate code",
-  "keywords": [
-    "ts",
-    "transformer",
-    "stories",
-    "typescript",
-    "storybook"
-  ],
+  "keywords": ["ts", "transformer", "stories", "typescript", "storybook"],
   "homepage": "https://github.com/yacinehmito/ts-transformer-stories#readme",
   "bugs": "httpss://github.com/yacinehmito/ts-transformer-stories/issues",
   "repository": "github:yacinehmito/ts-transformer-stories",
   "license": "MIT",
   "author": "Yacine Hmito <yacine.hmito@gmail.com>",
-  "contributors": [
-    "Yacine Hmito <yacine.hmito@gmail.com>"
-  ],
-  "files": [
-    "./dist/**"
-  ],
+  "contributors": ["Yacine Hmito <yacine.hmito@gmail.com>"],
+  "files": ["./dist/**"],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
@@ -29,9 +19,9 @@
     "cleanup": "rm -rf ./temp ./dist",
     "lint": "eslint . --ext=.ts",
     "prepack": "yarn build:bundle",
-    "prepublishOnly": "yarn lint && yarn typecheck && yarn test && yarn build:api",
     "test": "jest",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "validate": "./scripts/validate.sh"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.0.18",
