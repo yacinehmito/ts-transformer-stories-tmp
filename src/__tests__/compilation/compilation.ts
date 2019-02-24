@@ -10,7 +10,7 @@ function resolveFixtureDirectory(fixtureDirectory: string): string {
 
 export async function compile(fixtureDirectory: string): Promise<void> {
   const directory = resolveFixtureDirectory(fixtureDirectory);
-  const files = await glob(`${directory}/**/*.ts`, { onlyFiles: true });
+  const files = await glob(`${directory}/**/*.{ts,tsx}`, { onlyFiles: true });
 
   const compilerOptions: ts.CompilerOptions = {
     strict: true,
@@ -33,6 +33,14 @@ export async function compile(fixtureDirectory: string): Promise<void> {
   });
 }
 
+function compareTupleByFirstElement<T extends string | number | boolean>(
+  [a]: [T, ...unknown[]],
+  [b]: [T, ...unknown[]],
+): number {
+  if (a > b) return 1;
+  if (a < b) return -1;
+  return 0;
+}
 export class DirectoryContent {
   public static async read(directory: string): Promise<DirectoryContent> {
     const files = await glob(`${path.resolve(directory)}/**`, {
@@ -80,7 +88,10 @@ export class DirectoryContent {
   public toString(): string {
     const chunks: string[] = new Array(this._map.size);
     let i = 0;
-    for (const [filePath, content] of this._map.entries()) {
+    const entries = Array.from(this._map.entries()).sort(
+      compareTupleByFirstElement,
+    );
+    for (const [filePath, content] of entries) {
       chunks[i] = `----boundary ${filePath}\n${content}`;
       ++i;
     }

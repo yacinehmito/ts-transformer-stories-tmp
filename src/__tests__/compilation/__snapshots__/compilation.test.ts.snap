@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The React project compiles as expected 1`] = `
+----boundary bar/baz.stories.js
+import * as React from 'react';
+import { storiesOf as storiesOf_1 } from "@storybook/react";
+const stories = storiesOf_1("bar/baz", module);
+stories.add('Story in bar/baz.stories.tsx', () => React.createElement("div", null, "Hello"));
+
 ----boundary foo.stories.js
 import { createElement } from 'react';
 import { storiesOf as storiesOf_1 } from "@storybook/react";
@@ -12,6 +18,12 @@ import { createElement } from 'react';
 import { storiesOf as storiesOf_1 } from "@storybook/react";
 const stories = storiesOf_1("foo/bar/baz", module);
 stories.add('Story in foo/bar/baz.stories.ts', () => createElement('div', null, 'Hello'));
+
+----boundary foo/bar/index.stories.js
+import * as React from 'react';
+import { storiesOf as storiesOf_1 } from "@storybook/react";
+const stories = storiesOf_1("foo/bar", module);
+stories.add('Story in foo/bar/index.stories.tsx', () => React.createElement("div", null, "Hello"));
 
 ----boundary foo/foo.stories.js
 import { createElement } from 'react';

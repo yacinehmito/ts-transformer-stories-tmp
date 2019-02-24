@@ -1,6 +1,8 @@
-/node_modules/
-/dist/
-/temp/
-/coverage/
-/api/
+/node_modules
+/dist
+/temp
+/coverage
+
+**/__tests__/**/.artifacts
+
 /ts-transformer-stories.api.ts
