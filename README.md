@@ -126,4 +126,4 @@ To tweak the behavior of the transformer so that it suits your needs, you can pr
 
 ts-transformer-stories is licensed under [MIT](LICENSE).
 
-Copyright (c) 2019 Yacine Hmito
+Copyright (c) 2019 Spendesk

@@ -26,7 +26,7 @@ jobs:
       - image: circleci/node:10.15
         environment:
           GIT_COMMITTER_NAME: Circle CI
-          GIT_COMMITTER_EMAIL: yacine.hmito@gmail.com
+          GIT_COMMITTER_EMAIL: dev@spendesk.com
     steps:
       - checkout
       - install_node_modules
