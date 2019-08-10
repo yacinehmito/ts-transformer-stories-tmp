@@ -45,7 +45,7 @@
     "eslint": "^5.14.0",
     "eslint-config-prettier": "^4.0.0",
     "fast-check": "^1.10.1",
-    "fast-glob": "^2.2.6",
+    "fast-glob": "^3.0.0",
     "fs-extra": "^7.0.1",
     "jest": "^24.1.0",
     "jest-junit": "^6.3.0",
