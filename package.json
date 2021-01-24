@@ -56,13 +56,13 @@
     "semantic-release": "^15.13.3",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.2",
-    "typescript": "^3.3.3"
+    "typescript": "^4.0.0"
   },
   "peerDependencies": {
-    "typescript": "^3.0.0"
+    "typescript": "^4.0.0"
   },
   "resolutions": {
-    "@microsoft/api-extractor/**/typescript": "^3.3.3"
+    "@microsoft/api-extractor/**/typescript": "^4.0.0"
   },
   "unpkg": "./dist/index.min.js"
 }
