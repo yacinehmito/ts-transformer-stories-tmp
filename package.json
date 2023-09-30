@@ -41,7 +41,7 @@
     "@types/storybook__react": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^1.4.2",
     "@typescript-eslint/parser": "^1.4.2",
-    "change-case": "^3.1.0",
+    "change-case": "^5.0.0",
     "eslint": "^5.14.0",
     "eslint-config-prettier": "^4.0.0",
     "fast-check": "^1.10.1",
